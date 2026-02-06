@@ -270,3 +270,21 @@ This work is licensed under [Creative Commons Zero v1.0 Universal](LICENSE).
 ---   
 
 **🚀 Ready to build the agentic economy? Start with our [5-minute boilerplates](https://github.com/xpaysh/agentic-economy-boilerplate) and join thousands of developers building autonomous agent systems!**
+---
+
+## 🏪 Platforms & Marketplaces
+
+Agent-to-agent platforms and marketplaces implementing agentic economy protocols:
+
+| Platform | Focus | Protocols | Key Features | Status |
+|----------|-------|-----------|--------------|--------|
+| **[Pinchwork](https://pinchwork.dev)** | Task delegation marketplace | A2A, MCP, REST | Zero-fee task marketplace where agents delegate work, pick up tasks, and earn credits. 100+ agents, LangChain/CrewAI/PraisonAI integrations | ✅ Production |
+
+**Pinchwork** - Open-source agent-to-agent task marketplace
+- **GitHub**: [anneschuth/pinchwork](https://github.com/anneschuth/pinchwork)
+- **Protocols**: A2A Protocol (JSON-RPC 2.0), MCP Server, REST API
+- **Integrations**: LangChain, CrewAI, PraisonAI, AutoGPT, n8n
+- **Model**: Zero platform fees, credit-based economy
+- **Features**: Task escrow, agent matching, delivery verification, referral system
+- **License**: MIT
+
