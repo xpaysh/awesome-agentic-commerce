@@ -7,6 +7,7 @@ The commerce layer enables agents to exchange value through various payment mech
 | Protocol | Origin | Focus | Key Innovation | Status |
 |----------|--------|-------|----------------|--------|
 | **x402** | Coinbase + Cloudflare | HTTP-native crypto payments | Activates dormant HTTP 402 status code | ✅ Production |
+| **MoltsPay** | Zen7 | Universal Payment Protocol (UPP) | Multi-chain abstraction + 8 chains support | ✅ Production |
 | **AP2** | Google + 60+ partners | Enterprise payment authorization | Verifiable credentials + payment agnostic | ✅ Production |
 | **ACP** | OpenAI + Stripe | Consumer AI commerce | Seamless ChatGPT checkout experience | ✅ Production |
 | **Pay3** | Pay3 Platform | Stablecoin automation | Autonomous USDC/USDT transactions | 🚧 Beta |
@@ -66,6 +67,189 @@ const client = new X402Client({
 const response = await client.get('https://api.example.com/data');
 // Automatically handles 402 payment flow
 ```
+
+---
+
+## 💎 MoltsPay - Universal Payment Protocol (Zen7)
+
+### Overview
+MoltsPay is a Universal Payment Protocol (UPP) that abstracts multiple underlying payment protocols into a single unified API. It enables AI agents to transact across 8 different blockchains using protocol-specific optimizations without developer complexity.
+
+### Key Features
+- **Universal Protocol Abstraction (UPP)**: Single API for multiple underlying protocols
+- **Multi-Chain Support**: 8 chains (Base, Polygon, BNB, Tempo, Solana, Ethereum, Arbitrum, Optimism)
+- **Gasless Payments**: Client-side signatures with facilitator execution
+- **Protocol-Specific Optimizations**:
+  - x402 (EIP-3009) on Base/Polygon
+  - MPP (Machine Payments Protocol) on Tempo
+  - Solana Pay-for-Success (PFS) on Solana
+  - BNB Pre-Approval on BNB Chain
+- **Dual SDK Support**: Node.js and Python
+- **Service Discovery**: Built-in agent service registry
+
+### Architecture
+```mermaid
+graph TB
+    A[AI Agent] --> B[MoltsPay SDK]
+    B --> C{UPP Router}
+    C -->|Base/Polygon| D[x402 Protocol]
+    C -->|Tempo| E[MPP Protocol]
+    C -->|Solana| F[Pay-for-Success]
+    C -->|BNB| G[Pre-Approval]
+    
+    D --> H[CDP Facilitator]
+    E --> I[Tempo Facilitator]
+    F --> J[BNB Facilitator]
+    G --> K[BNB Facilitator]
+    
+    H --> L[On-Chain Settlement]
+    I --> L
+    J --> L
+    K --> L
+```
+
+### Supported Chains & Protocols
+
+| Chain | Protocol | Key Feature | Gas Model |
+|-------|----------|-------------|-----------|
+| Base | x402 | EIP-3009 transferWithAuthorization | Facilitator pays |
+| Polygon | x402 | EIP-3009 transferWithAuthorization | Facilitator pays |
+| Tempo Moderato | MPP | Direct on-chain transfer | Native gasless |
+| Solana | PFS | Server pays gas, client signs | Pay-for-success |
+| BNB Chain | Pre-Approval | EIP-712 intent + transferFrom | Facilitator pays |
+| Ethereum | x402 | EIP-3009 transferWithAuthorization | Facilitator pays |
+| Arbitrum | x402 | EIP-3009 transferWithAuthorization | Facilitator pays |
+| Optimism | x402 | EIP-3009 transferWithAuthorization | Facilitator pays |
+
+### Technical Implementation
+
+**Server-Side (Payment Receiver)**:
+```javascript
+import { PaymentServer } from 'moltspay';
+
+const server = new PaymentServer({
+  chain: 'base',
+  providerName: 'My AI Service',
+  walletAddress: '0x742d35Cc6634C0532925a3b8D440609653cbe',
+  cdpApiKey: process.env.CDP_API_KEY
+});
+
+// Define a service
+server.defineService({
+  id: 'ai-completion',
+  function: async (params) => {
+    return await myAIService.completion(params);
+  },
+  price: 0.99,
+  currency: 'USDC'
+});
+
+// Start server
+server.listen(3000);
+```
+
+**Client-Side (Payment Agent)**:
+```bash
+npm install moltspay
+npx moltspay init
+```
+
+```javascript
+import { PaymentAgent } from 'moltspay';
+
+const agent = new PaymentAgent({
+  chain: 'base',
+  privateKey: process.env.AGENT_PRIVATE_KEY
+});
+
+// Discover services
+const services = await agent.discover('https://api.myservice.com');
+
+// Pay for a service
+const result = await agent.pay({
+  url: 'https://api.myservice.com',
+  serviceId: 'ai-completion',
+  params: { prompt: 'Hello, world!' }
+});
+```
+
+### Python SDK
+```bash
+pip install moltspay
+```
+
+```python
+from moltspay import PaymentAgent
+
+agent = PaymentAgent(
+    chain='base',
+    private_key=os.environ['AGENT_PRIVATE_KEY']
+)
+
+# Pay for service
+result = agent.pay(
+    url='https://api.myservice.com',
+    service_id='ai-completion',
+    params={'prompt': 'Hello, world!'}
+)
+```
+
+### Service Discovery
+MoltsPay includes a built-in service registry at `/.well-known/agent-services.json`:
+
+```json
+{
+  "provider": {
+    "name": "Zen7 Video Generation",
+    "wallet": "0xb8d6f2441e8f8dfB6288A74Cf73804cDd0484E0C"
+  },
+  "services": [{
+    "id": "text-to-video",
+    "function": "generateVideo",
+    "price": 0.99,
+    "currency": "USDC",
+    "network": "base",
+    "protocol": "x402"
+  }]
+}
+```
+
+### Use Cases
+- **AI Agent Services**: Video generation, image processing, data analysis
+- **API Monetization**: Per-request microtransactions
+- **Multi-Agent Markets**: Agent-to-agent value exchange
+- **Cross-Chain Payments**: Unified interface across blockchains
+- **Enterprise B2B**: Automated procurement and settlements
+
+### Current Adoption
+- **8 chains supported** across EVM and non-EVM
+- **Dual SDK ecosystem** (Node.js + Python)
+- **Production deployments**: Zen7 video generation, multiple AI services
+- **Multi-facilitator architecture**: CDP, BNB, Tempo, Solana facilitators
+- **Universal Payment Protocol**: One API for all underlying protocols
+
+### Getting Started
+```bash
+# Install SDK
+npm install moltspay
+# or
+pip install moltspay
+
+# Initialize agent wallet
+npx moltspay init
+
+# Pay for a service
+npx moltspay pay https://api.service.com service-id --prompt "Hello"
+
+# Start a payment server
+npx moltspay start ./my-service --port 3000
+```
+
+### Resources
+- **Documentation**: https://docs.moltspay.com
+- **GitHub**: https://github.com/Yaqing2023/moltspay
+- **NPM**: `moltspay@latest`
+- **PyPI**: `moltspay-python`
 
 ---
 
@@ -301,9 +485,11 @@ class MultiProtocolAgent {
 | Transaction Type | Amount | Context | Recommended Protocol |
 |-----------------|--------|---------|---------------------|
 | API Micropayment | < $1 | Programmatic | x402 |
+| Multi-Chain Payment | Any | Cross-chain needed | MoltsPay (UPP) |
+| Agent-to-Agent | Any | AI-to-AI transactions | MoltsPay or x402 |
 | Enterprise Purchase | Any | B2B Workflow | AP2 |
 | Consumer Commerce | < $500 | Chat Interface | ACP (OpenAI/Stripe) |
-| Cross-Border | Any | International | Pay3 or Mastercard |
+| Cross-Border | Any | International | Pay3, Mastercard, or MoltsPay |
 | Recurring Service | Any | Subscription | AP2 or Mastercard |
 
 ---
@@ -313,6 +499,7 @@ class MultiProtocolAgent {
 | Protocol | Settlement Time | Fees | Scalability | Enterprise Ready |
 |----------|----------------|------|-------------|------------------|
 | x402 | 2 seconds | 0% | High | ✅ |
+| MoltsPay | 2-10 seconds | Protocol-dependent | High | ✅ |
 | AP2 | Varies by payment method | Payment method dependent | Very High | ✅ |
 | ACP | ~30 seconds | Stripe fees (~2.9%) | High | ✅ |
 | Pay3 | 10-60 seconds | Gas fees | Medium | 🔄 |

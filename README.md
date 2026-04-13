@@ -81,6 +81,7 @@ graph TB
 | Protocol | Origin | Focus | Key Features | Weekly Volume |
 |----------|--------|-------|--------------|---------------|
 | **x402** | Coinbase + Cloudflare | Crypto-native micropayments | HTTP 402, instant settlement, zero fees | 500K+ transactions |
+| **MoltsPay** | Zen7 | Universal Payment Protocol (UPP) | Multi-chain abstraction, 8 chains, gasless | Growing adoption |
 | **AP2** | Google + 60 orgs | Enterprise payment authorization | Payment-agnostic, auditable, VCs | Enterprise adoption |
 | **ACP** | OpenAI + Stripe | Consumer commerce | ChatGPT checkout, fraud prevention | Millions of transactions |
 | **Visa TAP** | Visa + x402 Foundation | TradFi + crypto bridge | Agent verification, x402 compatibility | **NEW 2025** |
