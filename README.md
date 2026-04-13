@@ -199,6 +199,8 @@ Not sure which protocols to use? Answer these questions to get your recommended 
 - **[Multi-Agent Coordination](link)** - A2A + multiple payment rails
 
 ### 🎯 Developer Showcases
+- **[agentsvc.io](https://agentsvc.io)** - Live production x402 service marketplace. 20 utility tools for AI agents (screenshots, OCR, PDF, weather, forex/crypto/stock prices, geocoding, translation, web search, and more) at $0.001–$0.008 USDC per call on Base Mainnet. MCP server + auto-discovery via `/.well-known/agent-services.json`. No API keys required.
+
 *Submit your project: [Contribution Guidelines](./community/CONTRIBUTING.md)*
 
 ---
