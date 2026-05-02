@@ -199,6 +199,8 @@ Not sure which protocols to use? Answer these questions to get your recommended 
 - **[Multi-Agent Coordination](link)** - A2A + multiple payment rails
 
 ### 🎯 Developer Showcases
+- **[Suede](https://app.suedeai.xyz)** — x402-paid AI music + video generation. Live `402` challenges on `/agent/generate`, `/create-music`, `/agent/video`. Discovery via `/.well-known/x402` + `/.well-known/agent-card.json`. ACP-ready commerce intent endpoint. USDC on Base. ([endpoint reference](https://github.com/Suede-AI/suede-x402-acp))
+
 *Submit your project: [Contribution Guidelines](./community/CONTRIBUTING.md)*
 
 ---
