@@ -11,6 +11,7 @@ The commerce layer enables agents to exchange value through various payment mech
 | **ACP** | OpenAI + Stripe | Consumer AI commerce | Seamless ChatGPT checkout experience | ✅ Production |
 | **Pay3** | Pay3 Platform | Stablecoin automation | Autonomous USDC/USDT transactions | 🚧 Beta |
 | **Mastercard Agent Pay** | Mastercard | TradFi integration | Tokenized payments via card networks | 🚧 Pilot |
+| **ERC-8183 Agentic Commerce** | EIP / community | Agent-to-agent service-delivery escrow | On-chain escrow + evaluator + reputation feedback | ✅ Production (Base) |
 
 ---
 
@@ -354,6 +355,45 @@ const securePaymentConfig = {
   }
 };
 ```
+
+---
+
+## 🤝 ERC-8183 — Agentic Commerce (Service-Delivery Escrow)
+
+### Overview
+[ERC-8183](https://eips.ethereum.org/EIPS/eip-8183) defines an on-chain escrow standard for *service delivery* between agents, distinct from the *micropayment* use case x402 handles. Where x402 settles instantly per HTTP request, ERC-8183 holds funds in escrow across a Job lifecycle so the buyer (Client) and seller (Provider) can disagree about whether the deliverable is acceptable, with an Evaluator role resolving disputes on-chain.
+
+```
+Client ──createJob──▶ Provider ──approve──▶ Client ──fund (escrow)──▶
+Provider ──submit (deliverable URI)──▶ Evaluator ──complete | reject──▶
+splits paid on-chain (provider / evaluator / platform) + ERC-8004 feedback
+```
+
+### Why It Complements x402
+x402 is correct for **stateless metered access** (per-request micropayments). ERC-8183 is correct for **stateful work products** where:
+- The deliverable can't be verified by a 200 OK
+- A neutral third party may need to adjudicate
+- Both sides want a public, tamper-evident trail of who did what
+- Reputation feedback should auto-fire on settlement (and it does — ERC-8183 contracts can write directly to ERC-8004 ReputationRegistry on completion)
+
+### Key Features
+- **On-chain escrow in stablecoin** (USDC on the reference deployment)
+- **3-way fee splits** enforced by the contract (provider / evaluator / platform)
+- **Pluggable evaluator policies**: manual review, JSON-schema validation, HTTP health-check; deterministic auto-finalize loops
+- **Refund on expiry** so funds are never stuck if the provider goes silent
+- **Native reputation reflux**: completion writes an `erc8183_job` feedback event to ERC-8004 with no extra integration
+
+### Reference Implementation
+- **CardZero** runs the first known production deployment on Base mainnet (since 2026-05):
+  - Jobs (proxy): [`0xb28a0cca5ac28466f3d175f35b97aa104d4c4ba8`](https://basescan.org/address/0xb28a0cca5ac28466f3d175f35b97aa104d4c4ba8)
+  - V3 wallet factory (escrow-aware ERC-4337): [`0x0c1d37f49ab9da5b6da2e2938be5567fbba4aabb`](https://basescan.org/address/0x0c1d37f49ab9da5b6da2e2938be5567fbba4aabb)
+  - Live API: `POST/GET https://api.cardzero.ai/v1/jobs`
+  - End-to-end mainnet trace (1 USDC, 5 transactions, 93/5/2% split): see [cardzero.ai/docs/recipes/job-escrow](https://cardzero.ai/docs/recipes/job-escrow)
+  - Source + 133 unit tests: [github.com/mrocker/CardZero](https://github.com/mrocker/CardZero)
+
+### Links
+- Spec: <https://eips.ethereum.org/EIPS/eip-8183>
+- Discussion: <https://ethereum-magicians.org/t/erc-8183-agentic-commerce/27902>
 
 ---
 

@@ -11,6 +11,44 @@ The identity and trust layer is the foundation of the agentic economy. Before ag
 | **W3C DIDs/VCs** | W3C Standards | Decentralized identity foundation | Self-sovereign identity for agents | ✅ Standard |
 | **Mastercard "Know Your Agent"** | Mastercard | TradFi-to-agent identity bridge | Card network integration + compliance | 🚧 Pilot |
 | **IBM Agent Identity Framework** | IBM | Enterprise agent identity | Corporate identity integration | 🔄 Development |
+| **ERC-8004 Trustless Agents** | EIP / community | On-chain identity + reputation registries | Permissionless, EVM-native, signed feedback | ✅ Production (Base) |
+
+---
+
+## 🪪 ERC-8004 — Trustless Agents (Identity & Reputation Registries)
+
+### Overview
+[ERC-8004](https://eips.ethereum.org/EIPS/eip-8004) defines two minimal on-chain registries for autonomous agents on EVM chains:
+
+1. **Identity Registry** — assigns each agent a globally unique `agentId` and binds it to a wallet address + a metadata URI (the "Agent Card", typically served at `/.well-known/agent-card.json`).
+2. **Reputation Registry** — accepts signed `feedback` events (value `[-10, 20]`, scoring rules pinned by `scoringRulesHash`) so any seller, evaluator, or peer can build a portable, public track record for an agent.
+
+Unlike VC-based identity systems (AP2, W3C VCs) that depend on a recognized issuer, ERC-8004 is **permissionless**: any agent can register, any party can publish feedback, and consumers decide whose feedback to trust off-chain.
+
+### Key Features
+- **Permissionless identity**: no gatekeeper; agentId is monotonic and bound to the registering address
+- **EIP-712 signed feedback**: feedback events are off-chain-verifiable and tamper-evident
+- **ERC-1271 contract signatures supported**: smart-contract wallets can attest natively
+- **`scoringRulesHash`**: pins the consumer-readable rules under which feedback was issued, so buyers know what a "score 15" actually meant
+- **Composable with commerce**: ERC-8183 escrow contracts can write reputation events directly on settlement
+
+### Reference Implementation
+- **CardZero** runs the first known production deployment on Base mainnet (since 2026-05):
+  - IdentityRegistry: [`0x1db9b790ae49def806d3d16172de04d2557fecbe`](https://basescan.org/address/0x1db9b790ae49def806d3d16172de04d2557fecbe)
+  - ReputationRegistry: [`0xc00a5757c63d65005d22e507eae045df5e83b338`](https://basescan.org/address/0xc00a5757c63d65005d22e507eae045df5e83b338)
+  - Public Agent Card endpoints: `GET https://cardzero.ai/.well-known/agent/<wallet>`
+  - Scoring rules: [cardzero.ai/SCORING-RULES.md](https://cardzero.ai/SCORING-RULES.md)
+  - Source + tests: [github.com/mrocker/CardZero](https://github.com/mrocker/CardZero)
+
+### Use Cases
+- x402 sellers checking an agent's payment-history reputation before serving
+- Agent-to-agent service marketplaces ranking providers
+- Lighthouse evaluators cross-referencing past job outcomes
+- Any context where you want trust signals without a centralized issuer
+
+### Links
+- Spec: <https://eips.ethereum.org/EIPS/eip-8004>
+- Discussion: <https://ethereum-magicians.org/t/erc-8004-trustless-agents/27922>
 
 ---
 

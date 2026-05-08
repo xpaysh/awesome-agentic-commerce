@@ -56,6 +56,7 @@ graph TB
 | **W3C DIDs/Verifiable Credentials** | Decentralized identity foundation | Open standards | ✅ Standard |
 | **Mastercard "Know Your Agent"** | TradFi-to-agent identity bridge | Card network integration | 🚧 Pilot |
 | **Salesforce Agent Cloud** | Enterprise agent identity management | CRM-integrated workflows | **NEW 2025** |
+| **ERC-8004 (Trustless Agents)** | On-chain agent identity + reputation registries | Permissionless, EVM-native, signed feedback | ✅ Production (Base) |
 
 ### 📍 Layer 2: Discovery (The "Yellow Pages")  
 *How do agents find each other and discover services?*
@@ -86,6 +87,7 @@ graph TB
 | **Visa TAP** | Visa + x402 Foundation | TradFi + crypto bridge | Agent verification, x402 compatibility | **NEW 2025** |
 | **Pay3** | Pay3 Platform | Stablecoin automation | USDC/USDT, autonomous payouts | Telegram/TON focus |
 | **Agent Pay** | Mastercard | TradFi integration | Tokenized payments, wallet integration | Global card networks |
+| **ERC-8183 (Agentic Commerce)** | EIP / community | Agent-to-agent service-delivery escrow | On-chain escrow + evaluator + 8004 reputation feedback | ✅ Production (Base) |
 
 ---
 
@@ -127,6 +129,7 @@ Not sure which protocols to use? Answer these questions to get your recommended 
 - **🛒 Consumer AI Commerce** → ACP (OpenAI/Stripe) + MCP
 - **🌐 Cross-Chain DeFi Agents** → Pay3 + Olas + MCP
 - **💳 Traditional Finance Integration** → Mastercard Agent Pay + AP2
+- **🤝 Agent-to-Agent Service Delivery (with escrow)** → ERC-8183 + ERC-8004 + x402
 
 ### 🏗️ What's your technical background?
 - **Web2 Developer** → Start with ACP (Stripe) + MCP
