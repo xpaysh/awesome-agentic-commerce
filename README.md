@@ -270,3 +270,6 @@ This work is licensed under [Creative Commons Zero v1.0 Universal](LICENSE).
 ---   
 
 **🚀 Ready to build the agentic economy? Start with our [5-minute boilerplates](https://github.com/xpaysh/agentic-economy-boilerplate) and join thousands of developers building autonomous agent systems!**
+
+## Services
+- [NEXUS Intelligence API](https://nexus-agent-xa12.onrender.com) - 54-endpoint x402 utility hub. Web scraping, DNS, CVE, translation, PII detection, company intel. Pay per call on Base.
