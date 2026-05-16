@@ -39,13 +39,13 @@ Each row: which protocols it speaks, license, and link.
 
 - **[xpaysh/agentic-commerce-for-woocommerce](https://github.com/xpaysh/agentic-commerce-for-woocommerce)** — ACP + UCP + AP2 (planned). WordPress plugin. GPLv2.
 
-### BigCommerce
-
-- *No dedicated repo yet. Planned: [xpaysh/agentic-commerce-for-bigcommerce](https://github.com/xpaysh/agentic-commerce-for-bigcommerce) (Phase B-1).*
-
 ### commercetools
 
-- *No dedicated repo yet. Planned: [xpaysh/agentic-commerce-for-commercetools](https://github.com/xpaysh/agentic-commerce-for-commercetools) (Phase B-2).*
+- **[xpaysh/agentic-commerce-for-commercetools](https://github.com/xpaysh/agentic-commerce-for-commercetools)** — Phase B-1, scaffold in progress.
+
+### BigCommerce
+
+- *No dedicated repo yet. Planned: [xpaysh/agentic-commerce-for-bigcommerce](https://github.com/xpaysh/agentic-commerce-for-bigcommerce) (Phase B-2).*
 
 ### Magento / Adobe Commerce
 
