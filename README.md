@@ -106,10 +106,11 @@ Real, externally-verifiable standards (no invented well-known URIs):
 - **[schema.org](https://schema.org)** — JSON-LD `Product`, `Offer`, `AggregateOffer`, `BreadcrumbList`.
 - **[RFC 9309](https://datatracker.ietf.org/doc/rfc9309/)** — `robots.txt`. Real AI user-agents to allowlist or block: `GPTBot`, `ClaudeBot`, `Google-Extended`, `PerplexityBot`, `CCBot`, `Amazonbot`.
 - **[RFC 9728](https://datatracker.ietf.org/doc/rfc9728/)** — `/.well-known/oauth-protected-resource` for agent OAuth.
+- **[UCP business profile](https://ucp.dev/latest/specification/overview/) / [Google's UCP guide](https://developers.google.com/merchant/ucp/guides/ucp-profile)** — `/.well-known/ucp` (no extension), spec rev `2026-04-08`. The capability-negotiation entry point that Google + Shopify + Etsy + Wayfair + Target + Walmart fetch.
 
 ### Files to **not** emit
 
-`/.well-known/agentic-commerce.json`, `/.well-known/ucp.json`, `/.well-known/acp.json`, `/.well-known/ap2.json`, `/.well-known/mcp.json`, `/.well-known/ai-plugin.json` (deprecated), `/agents.txt`, `/ai.txt` — none of these are in any active spec. If you see a plugin emitting one of these, please [open an issue](https://github.com/xpaysh/awesome-agentic-commerce/issues).
+`/.well-known/agentic-commerce.json`, `/.well-known/ucp.json` (the real UCP profile path is `/.well-known/ucp` — no extension), `/.well-known/acp.json`, `/.well-known/ap2.json`, `/.well-known/mcp.json`, `/.well-known/ai-plugin.json` (deprecated), `/agents.txt`, `/ai.txt` — none of these are in any active spec. If you see a plugin emitting one of these, please [open an issue](https://github.com/xpaysh/awesome-agentic-commerce/issues).
 
 ---
 
