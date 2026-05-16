@@ -45,7 +45,7 @@ Each row: which protocols it speaks, license, and link.
 
 ### BigCommerce
 
-- *No dedicated repo yet. Planned: `xpaysh/agentic-commerce-for-bigcommerce`.*
+- **[xpaysh/agentic-commerce-for-bigcommerce](https://github.com/xpaysh/agentic-commerce-for-bigcommerce)** — scaffolded; in active development.
 
 ### Magento / Adobe Commerce
 
