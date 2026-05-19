@@ -199,6 +199,9 @@ Not sure which protocols to use? Answer these questions to get your recommended 
 - **[Multi-Agent Coordination](link)** - A2A + multiple payment rails
 
 ### 🎯 Developer Showcases
+
+- **[AgentIAM (Achilles EP)](https://achillesalpha.com)** — Pre-execution safety + intelligence layer for autonomous agents. 18 x402-payable HTTP endpoints on Base Mainnet (NoLeak / MemGuard / RiskOracle / SecureExec / FlowCore for execution safety; code audit / validate; research; DELPHI knowledge graph; real-time signals). $0.001–$0.05 USDC/call. Indexed on [x402scan](https://www.x402scan.com/server/de9dbadb-6475-43f2-a621-a805fb1c661e), [402index](https://402index.io), and the [MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=agentiam).
+
 *Submit your project: [Contribution Guidelines](./community/CONTRIBUTING.md)*
 
 ---
