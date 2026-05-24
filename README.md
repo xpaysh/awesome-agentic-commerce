@@ -201,6 +201,8 @@ Not sure which protocols to use? Answer these questions to get your recommended 
 ### 🎯 Developer Showcases
 *Submit your project: [Contribution Guidelines](./community/CONTRIBUTING.md)*
 
+- **[Gapup MCP](https://github.com/getgapup/gapup-mcp-public)** — 183-tool agent-payable MCP server for board-ready C-suite intelligence. Competitive intel (EDGAR + Yahoo + Wayback), SEC filings, 8-list sanctions screener (OFAC + EU + UK + UN + SECO + SEMA + DFAT), KYC, pentest scope, clinical evidence GRADE-graded (PubMed + ClinicalTrials.gov + OpenFDA), EU-first real estate (DVF Cerema + Géorisques), NAICS classifier, sentiment news (GDELT), research paper Q&A (OpenAlex 45M). Pay-per-call x402 USDC/EURC on Base + Optimism. Free tier 100 calls/mo. Dual-audience format (human Mistral / agent Cerebras <5s). [Smithery verified ✓](https://smithery.ai/servers/gapup-team/gapup-mcp) · [Live endpoint](https://mcp.gapup.io/mcp) · [Onboard](https://hub.gapup.io/agents-api/onboard)
+
 ---
 
 ## 👥 Community & Resources
