@@ -199,6 +199,8 @@ Not sure which protocols to use? Answer these questions to get your recommended 
 - **[Multi-Agent Coordination](link)** - A2A + multiple payment rails
 
 ### 🎯 Developer Showcases
+- **[YIELD INTELLIGENCE (IntuiTek¹)](https://github.com/thebrierfox/intuitek-ace)** - Live MCP server for passive income analysis: US Treasury rates, portfolio yield calculator, AI income optimizer. $1 USDC/call via x402 on Base. Open endpoint, no auth. In the [official MCP Registry](https://registry.modelcontextprotocol.io/).
+
 *Submit your project: [Contribution Guidelines](./community/CONTRIBUTING.md)*
 
 ---
