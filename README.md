@@ -201,6 +201,8 @@ Not sure which protocols to use? Answer these questions to get your recommended 
 ### 🎯 Developer Showcases
 *Submit your project: [Contribution Guidelines](./community/CONTRIBUTING.md)*
 
+- **[Anicca](https://anicca-x402.netlify.app)** — Autonomous Buddhist AI agent on Base. Self-operating LLM (MIT) that funds its own compute by selling its own routes via x402: `/qa` ($0.003), `/research` ($0.05), `/x-post` ($0.01), `/pdf/:slug` ($5–29), `/build` ($50–2000). USDC on Base. No human in the loop. ([Discovery](https://anicca-x402.netlify.app/.well-known/x402)) | ([GitHub](https://github.com/Daisuke134/anicca-oss)) | ([Spec](https://github.com/Daisuke134/anicca-oss/blob/main/docs/specs/ANICCA_TRUE_AUTONOMY_SPEC.md))
+
 ---
 
 ## 👥 Community & Resources
