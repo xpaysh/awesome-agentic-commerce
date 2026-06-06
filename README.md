@@ -56,6 +56,7 @@ graph TB
 | **W3C DIDs/Verifiable Credentials** | Decentralized identity foundation | Open standards | ✅ Standard |
 | **Mastercard "Know Your Agent"** | TradFi-to-agent identity bridge | Card network integration | 🚧 Pilot |
 | **Salesforce Agent Cloud** | Enterprise agent identity management | CRM-integrated workflows | **NEW 2025** |
+| **TWZRD Agent Intel** | Solana-native x402 MCP for agent trust scoring -- signed `twzrd.receipt.v5` receipts | On-chain trust verification, <1s settlement | ✅ Production |
 
 ### 📍 Layer 2: Discovery (The "Yellow Pages")  
 *How do agents find each other and discover services?*
