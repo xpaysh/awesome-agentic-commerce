@@ -199,6 +199,7 @@ Not sure which protocols to use? Answer these questions to get your recommended 
 - **[Multi-Agent Coordination](link)** - A2A + multiple payment rails
 
 ### 🎯 Developer Showcases
+- **[GPT-5.5 x402 Gateway](https://gpt55.558686.xyz)** - OpenAI-compatible GPT-5.5 chat and MCP tool gateway using x402 Base USDC settlement. Source and integration notes: [go165/gpt55-x402-gateway](https://github.com/go165/gpt55-x402-gateway).
 *Submit your project: [Contribution Guidelines](./community/CONTRIBUTING.md)*
 
 ---
