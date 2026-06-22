@@ -201,6 +201,8 @@ Not sure which protocols to use? Answer these questions to get your recommended 
 ### 🎯 Developer Showcases
 *Submit your project: [Contribution Guidelines](./community/CONTRIBUTING.md)*
 
+- **[DoNotAct](https://donotact.com)** - Fail-closed Risk Gateway for agents before capital moves. Prediction-market and token agents can call stop/go diagnostics with signed receipts, MCP/OpenAPI discovery, and x402 per-call payment routes for UMA dispute lifecycle, resolution ambiguity, public-book capacity, and T1-T8 token-risk checks.
+
 ---
 
 ## 👥 Community & Resources
