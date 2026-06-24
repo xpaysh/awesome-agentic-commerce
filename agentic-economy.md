@@ -75,6 +75,10 @@ How agents and tools talk to each other.
 
 Long form: [`protocols/communication.md`](./protocols/communication.md).
 
+### Agent-to-agent platforms and marketplaces
+
+- **[Pinchwork](https://pinchwork.dev)** — open-source agent-to-agent task marketplace ([anneschuth/pinchwork](https://github.com/anneschuth/pinchwork)). A2A (JSON-RPC 2.0) + MCP + REST. Zero platform fees, credit-based escrow, task matching, delivery verification. Integrations: LangChain, CrewAI, PraisonAI, AutoGPT, n8n. MIT.
+
 Note on naming: "ACP" is overloaded. **Agentic Commerce Protocol** (OpenAI + Stripe + Meta, layer 4) and **IBM's Agent Communication Protocol** (layer 3) are distinct projects sharing the acronym. This list reserves "ACP" without qualifier for the commerce protocol; the IBM project is referred to as "IBM ACP."
 
 ---
