@@ -105,6 +105,7 @@ These sit alongside or compose multiple rails. Not first-party commerce protocol
 Live, x402-payable services and agents in production. One line each. Acceptance: a live endpoint (or a published package) plus a discovery file or registry entry.
 
 - **[agentsvc.io](https://agentsvc.io)** — live production x402 service marketplace. 20 utility tools for AI agents (screenshots, OCR, PDF, weather, forex / crypto / stock prices, geocoding, translation, web search) at $0.001–$0.008 USDC per call on Base Mainnet. MCP server + auto-discovery via `/.well-known/agent-services.json`. No API keys.
+- **[AgentIAM (Achilles EP)](https://achillesalpha.com)** — pre-execution safety + intelligence layer for autonomous agents. 18 x402-payable HTTP endpoints on Base Mainnet (NoLeak / MemGuard / RiskOracle / SecureExec / FlowCore; code audit; research; DELPHI knowledge graph; real-time signals). $0.001–$0.05 USDC/call. Indexed on [x402scan](https://www.x402scan.com/server/de9dbadb-6475-43f2-a621-a805fb1c661e), [402index](https://402index.io), and the [MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=agentiam).
 
 ---
 
