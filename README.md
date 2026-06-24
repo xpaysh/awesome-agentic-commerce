@@ -201,6 +201,8 @@ Not sure which protocols to use? Answer these questions to get your recommended 
 ### 🎯 Developer Showcases
 *Submit your project: [Contribution Guidelines](./community/CONTRIBUTING.md)*
 
+- **[Magpie](https://x402.magpie.capital)** - Agent-native lending on Solana, driven end-to-end over x402. An agent borrows SOL against memecoin collateral, arms an in-vault take-profit/stop-loss on its own loan, and repays — non-custodial (the agent signs every tx), pay-per-call in USDC or native SOL. [SDK](https://www.npmjs.com/package/@magpieloans/magpie-agent) · [MCP](https://www.npmjs.com/package/@magpieloans/magpie-mcp) · [Discovery](https://x402.magpie.capital/.well-known/x402.json)
+
 ---
 
 ## 👥 Community & Resources
