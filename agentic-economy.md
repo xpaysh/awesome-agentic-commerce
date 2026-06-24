@@ -90,6 +90,12 @@ This is the main list. See [`README.md`](./README.md) and [`protocols/commerce.m
 
 The active protocols (ACP, UCP, AP2, TACP), the payment rails beneath (MPP, x402, cards, stablecoins), the per-platform plugins on top.
 
+### Adjacent and meta-payment protocols
+
+These sit alongside or compose multiple rails. Not first-party commerce protocols by themselves, but worth tracking.
+
+- **[MoltsPay Universal Payment Protocol (UPP)](https://moltspay.com)** by Zen7 — multi-chain abstraction layer that routes per chain: x402 / EIP-3009 (Base, Polygon), MPP (Tempo), Pay-for-Success (Solana), pre-approval (BNB). 8 chains, gasless via client-side signatures + facilitator execution. Node.js + Python SDKs. Service discovery built in.
+
 ---
 
 ## Why we narrowed to commerce
