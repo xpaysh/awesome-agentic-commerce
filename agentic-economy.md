@@ -55,6 +55,7 @@ How agents find merchants and services.
 | **schema.org JSON-LD** | `Product`, `Offer`, `AggregateOffer`, `BreadcrumbList` | open standard |
 | **Olas (Autonolas)** | On-chain agent registries via NFTs | production |
 | **IBM ACP Registry** | Agent capability registries, enterprise focus | beta |
+| **[Hashgraph Online (HOL)](https://hashgraphonline.com)** | Universal agentic registry on Hedera: HCS-14 UAIDs, ERC-8004 bridge | production |
 
 Long form: [`protocols/discovery.md`](./protocols/discovery.md).
 
