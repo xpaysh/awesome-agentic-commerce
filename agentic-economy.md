@@ -98,6 +98,14 @@ These sit alongside or compose multiple rails. Not first-party commerce protocol
 
 ---
 
+## Developer showcases
+
+Live, x402-payable services and agents in production. One line each. Acceptance: a live endpoint (or a published package) plus a discovery file or registry entry.
+
+- **[agentsvc.io](https://agentsvc.io)** — live production x402 service marketplace. 20 utility tools for AI agents (screenshots, OCR, PDF, weather, forex / crypto / stock prices, geocoding, translation, web search) at $0.001–$0.008 USDC per call on Base Mainnet. MCP server + auto-discovery via `/.well-known/agent-services.json`. No API keys.
+
+---
+
 ## Why we narrowed to commerce
 
 Builders land on this repo overwhelmingly for the commerce layer. Identity, discovery, and communication are well-surveyed elsewhere (W3C, IANA, the MCP and A2A communities). Commerce is where the depth lives in the main list.
