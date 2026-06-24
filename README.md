@@ -1,272 +1,248 @@
-# Awesome Agentic Economy [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+# Awesome Agentic Commerce [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-> 🗺️ **The Definitive Map & Launchpad for the Agentic Economy** - From Zero to Production in 5 Minutes
+> A curated reference for builders implementing **agentic commerce protocols** against real merchants. Strict acceptance criteria, attribute-rich tables, anti-patterns, verified well-known URIs, working schemas. Not a wall of links.
 
-🚀 The first comprehensive resource covering the entire agentic economy stack - protocols, tools, and boilerplates to build autonomous AI agents that can discover, communicate, and transact value independently.
+[![GitHub stars](https://img.shields.io/github/stars/xpaysh/awesome-agentic-commerce?style=social)](https://github.com/xpaysh/awesome-agentic-commerce)
+[![Last update](https://img.shields.io/github/last-commit/xpaysh/awesome-agentic-commerce?label=updated)](./UPDATES.md)
+[![License: CC0-1.0](https://img.shields.io/badge/license-CC0--1.0-lightgrey.svg)](LICENSE)
+[![Weekly updates](https://img.shields.io/badge/weekly-UPDATES.md-orange)](./UPDATES.md)
+[![Boilerplate](https://img.shields.io/badge/boilerplate-vending--machine-blue)](https://github.com/xpaysh/agentic-economy-boilerplate)
 
-[![GitHub stars](https://img.shields.io/github/stars/xpaysh/awesome-agentic-economy?style=social)](https://github.com/xpaysh/awesome-agentic-economy)
-[![Boilerplate Repo](https://img.shields.io/badge/🔧_Boilerplates-agentic--economy--boilerplate-blue)](https://github.com/xpaysh/agentic-economy-boilerplate)
-![Market Size](https://img.shields.io/badge/Market_Size-$5T_by_2030-brightgreen)
-![Protocols Tracked](https://img.shields.io/badge/Protocols-12+_Active-orange)
+This list covers the layer where AI agents (ChatGPT, Claude, Gemini, custom) discover, negotiate, and transact with merchant storefronts on behalf of human buyers. The active protocols (ACP, UCP, AP2), the discovery standards (`llms.txt`, A2A `agent-card`, schema.org), the payment rails beneath (MPP, x402, cards, stablecoins), and the per-platform integrations that tie them together.
+
+Maintained by [xpay✦](https://www.xpay.sh). The broader agentic-economy view (identity, discovery, communication, commerce as a 4-layer stack) lives in [`agentic-economy.md`](./agentic-economy.md).
+
+## Contents
+
+- [Pick a protocol](#pick-a-protocol)
+- [Protocol comparison](#protocol-comparison)
+- [Per-platform plugins](#per-platform-plugins)
+- [Reference implementations and SDKs](#reference-implementations-and-sdks)
+- [`@xpaysh/*` packages (npm)](#xpaysh-packages-npm)
+- [Payment rails](#payment-rails)
+- [Discovery standards](#discovery-standards)
+- [Files to **not** emit](#files-to-not-emit)
+- [Conformance and tooling](#conformance-and-tooling)
+- [Working examples](#working-examples)
+- [Weekly updates](#weekly-updates)
+- [Related lists](#related-lists)
+- [Contributing](#contributing)
 
 ---
 
-## 📈 **Live Updates & Timeline**
+## Pick a protocol
 
-> **🔥 NEW: [Weekly Updates](./UPDATES.md)** - Week-by-week changelog of the $180M+ agentic economy explosion  
-> **📰 [Industry Analysis](https://agenticeconomy.substack.com/s/agentic-economy-weekly-updates)** - Deep dives on protocols, partnerships, and market trends  
-> **🎯 [Interactive Timeline](https://www.xpay.sh/resources/agentic-economy-timeline/)** - Explore the full 2025 agentic inflection point 
-
-**Latest**: MCP v0.4.0 + x402 integration • 500K+ weekly transactions • 492% YoY growth
-
----
-
-## 🎯 Quick Start - Choose Your Path
-
-**🏗️ Builder?** → [5-Minute Vending Machine](https://github.com/xpaysh/agentic-economy-boilerplate) - Clone & run working examples  
-**🧭 Explorer?** → [4-Layer Stack Guide](#-the-4-layer-stack-framework) - Understand the full ecosystem  
-**🚀 Enterprise?** → [Protocol Decision Tree](#-protocol-selector-quiz) - Find your optimal stack  
-**📊 Investor?** → [Market Analysis](#-market-analysis) - Growth metrics & forecasts
-
----
-
-## 🗺️ The 4-Layer Stack Framework
-
-The agentic economy operates on four fundamental layers. Understanding this stack is key to building successful autonomous agents:
+Five-second decision aid. Branches are not exclusive: real implementations often run two protocols side by side.
 
 ```mermaid
-graph TB
-    A[Identity & Trust Layer] --> B[Discovery Layer]
-    B --> C[Communication Layer] 
-    C --> D[Commerce Layer]
-    
-    A1[Who am I? Who can I trust?] --> A
-    B1[How do I find other agents?] --> B
-    C1[How do we talk to each other?] --> C
-    D1[How do we exchange value?] --> D
+flowchart TD
+    Start([What are you building?])
+    Start --> Q1{Agent buys from a<br/>specific merchant?}
+    Q1 -- yes --> Q2{Already on Stripe<br/>or ChatGPT surface?}
+    Q1 -- no, vendor-neutral --> UCP
+    Q2 -- yes --> ACP[ACP<br/>OpenAI + Stripe + Meta]
+    Q2 -- no --> Q3{Need verifiable<br/>payment mandates?}
+    Q3 -- yes --> AP2[AP2<br/>Google + 60 orgs]
+    Q3 -- no --> ACP
+    UCP[UCP<br/>vendor-neutral TSC]
+    ACP --> Rail{Payment rail?}
+    UCP --> Rail
+    AP2 --> Rail
+    Rail -- stablecoin --> X402[x402]
+    Rail -- cards or any --> MPP[MPP]
+    Rail -- direct stablecoin --> Bridge[Bridge / Tempo / Privy]
 ```
 
-### 🔐 Layer 1: Identity & Trust (The "Passport")
-*How do agents prove identity and establish trust?*
-
-| Protocol | Description | Key Feature | Status |
-|----------|-------------|-------------|---------|
-| **Google's AP2 Mandates** | Verifiable Credentials for agent authorization | VCs + Audit trails | ✅ Production |
-| **Visa TAP (Trusted Agent Protocol)** | Agent verification + x402 bridge | TradFi-crypto compatibility | **NEW 2025** |
-| **W3C DIDs/Verifiable Credentials** | Decentralized identity foundation | Open standards | ✅ Standard |
-| **Mastercard "Know Your Agent"** | TradFi-to-agent identity bridge | Card network integration | 🚧 Pilot |
-| **Salesforce Agent Cloud** | Enterprise agent identity management | CRM-integrated workflows | **NEW 2025** |
-
-### 📍 Layer 2: Discovery (The "Yellow Pages")  
-*How do agents find each other and discover services?*
-
-| Protocol | Description | Key Feature | Status |
-|----------|-------------|-------------|---------|
-| **Google's A2A Agent Cards** | JSON manifests for agent capabilities | Service descriptions | ✅ Production |
-| **Olas (Autonolas)** | On-chain registries via NFTs | Decentralized discovery | ✅ Production |
-| **IBM's ACP Registry** | Agent capability registries | Enterprise focus | 🚧 Beta |
-
-### 💬 Layer 3: Communication (The "Language")
-*How do agents communicate and coordinate?*
-
-| Protocol | Description | Key Feature | Status |
-|----------|-------------|-------------|---------|
-| **Google's A2A Protocol** | Agent-to-agent communication standard | Real-time coordination | ✅ Production |
-| **Anthropic's MCP** | Agent-to-tool communication | Context sharing | ✅ Production |
-| **IBM's ACP Wire Format** | Cross-framework agent communication | Human-agent inclusion | 🚧 Beta |
-
-### 💰 Layer 4: Commerce (The "Transaction")
-*How do agents exchange value and complete transactions?*
-
-| Protocol | Origin | Focus | Key Features | Weekly Volume |
-|----------|--------|-------|--------------|---------------|
-| **x402** | Coinbase + Cloudflare | Crypto-native micropayments | HTTP 402, instant settlement, zero fees | 500K+ transactions |
-| **AP2** | Google + 60 orgs | Enterprise payment authorization | Payment-agnostic, auditable, VCs | Enterprise adoption |
-| **ACP** | OpenAI + Stripe | Consumer commerce | ChatGPT checkout, fraud prevention | Millions of transactions |
-| **Visa TAP** | Visa + x402 Foundation | TradFi + crypto bridge | Agent verification, x402 compatibility | **NEW 2025** |
-| **Pay3** | Pay3 Platform | Stablecoin automation | USDC/USDT, autonomous payouts | Telegram/TON focus |
-| **Agent Pay** | Mastercard | TradFi integration | Tokenized payments, wallet integration | Global card networks |
+If you're still unsure, the long form is in [`protocols/commerce.md`](./protocols/commerce.md).
 
 ---
 
-## 🚀 The Rosetta Stone: Working Examples
+## Protocol comparison
 
-Instead of just documentation, we provide **working vending machine agents** implemented with each major protocol stack:
+| Protocol | Spec repo | Sponsor | Surface | Discovery | Payment auth | Signed requests |
+|---|---|---|---|---|---|---|
+| **ACP** — Agentic Commerce Protocol | [agentic-commerce-protocol/agentic-commerce-protocol](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol) | OpenAI · Stripe · Meta (TSC) | Cart, checkout, delegated payment, discounts, fulfillment | none defined in spec; partner-specific | `delegate_payment` flow | optional |
+| **UCP** — Universal Commerce Protocol | [Universal-Commerce-Protocol/ucp](https://github.com/Universal-Commerce-Protocol/ucp) | Vendor-neutral Tech Council | Cart, checkout, order, catalog, refunds, disputes | `/.well-known/ucp` (business profile) | external (any rail) | RFC 9421 required |
+| **AP2** — Agent Payments Protocol | [google-agentic-commerce/AP2](https://github.com/google-agentic-commerce/AP2) | Google | Signed mandates, A2A transport | A2A agent-card | verifiable credentials | yes (JWS) |
+| **TACP** — Trusted Agentic Commerce | [forter/trusted-agentic-commerce-protocol](https://github.com/forter/trusted-agentic-commerce-protocol) | Forter | Parallel agent-trust overlay (orthogonal to cart/checkout) | JWKS | n/a (signal layer) | JWS + JWE |
 
-### 🎮 [Boilerplate Repository](https://github.com/xpaysh/agentic-economy-boilerplate)
+Side-by-side technical comparison: [docs.xpay.sh/agentic-commerce-protocols/comparison](https://docs.xpay.sh/agentic-commerce-protocols/comparison).
+
+---
+
+## Per-platform plugins
+
+Each row: protocols spoken, license, link. Vendor-maintained entries marked *(official)*; everything else is `xpaysh/` reference or community-contributed.
+
+### WooCommerce
+- [xpaysh/agentic-commerce-for-woocommerce](https://github.com/xpaysh/agentic-commerce-for-woocommerce) — v0.2.x, PHP, ACP + UCP + AP2, WordPress plugin, GPLv2.
+
+### commercetools
+- [xpaysh/agentic-commerce-for-commercetools](https://github.com/xpaysh/agentic-commerce-for-commercetools) — v0.2.1, TypeScript, ACP + UCP + AP2, RFC 9421 signature verification middleware on `/ucp/*` + `/acp/*` (env-gated).
+
+### BigCommerce
+- [xpaysh/agentic-commerce-for-bigcommerce](https://github.com/xpaysh/agentic-commerce-for-bigcommerce) — v0.2.1, ACP + UCP + AP2, BigCommerce App via App Marketplace.
+
+### Magento / Adobe Commerce
+- [xpaysh/agentic-commerce-for-magento](https://github.com/xpaysh/agentic-commerce-for-magento) — v0.2.1, ACP + UCP + AP2. Consolidates two unmaintained upstream ACP modules onto multi-protocol coverage.
+
+### Shopify
+- [Shopify](https://github.com/Shopify) *(official)* — Shopify's first-party UCP path; composes with the broader Shopify checkout.
+- [xpaysh/agentic-commerce-for-shopify-app](https://github.com/xpaysh/agentic-commerce-for-shopify-app) — v0.2.1, ACP + UCP + AP2. Shopify App; composes with Shopify's UCP-native flow rather than competing.
+
+### Salesforce Commerce Cloud / Demandware
+- [xpaysh/agentic-commerce-for-salesforce-commerce](https://github.com/xpaysh/agentic-commerce-for-salesforce-commerce) — v0.2.1, ACP + UCP + AP2, B2C Commerce cartridge + PWA Kit extension.
+
+### Saleor
+- [saleor/saleor-mcp](https://github.com/saleor) *(official)* — Saleor's MCP server (MCP transport binding).
+- [xpaysh/agentic-commerce-for-saleor](https://github.com/xpaysh/agentic-commerce-for-saleor) — v0.2.1, ACP + UCP + AP2 protocol layer; composes with `saleor-mcp`.
+
+### PrestaShop
+- [xpaysh/agentic-commerce-for-prestashop](https://github.com/xpaysh/agentic-commerce-for-prestashop) — v0.2.1, ACP + UCP + AP2, PrestaShop module.
+
+### OpenCart, Shopware, Spree, Sylius, nopCommerce, Drupal Commerce, Ecwid
+Template-based, community-contributed. Walkthrough in [`community/CONTRIBUTING.md`](./community/CONTRIBUTING.md), starter kit at [`xpaysh/agentic-commerce-plugin-template`](https://github.com/xpaysh/agentic-commerce-plugin-template).
+
+---
+
+## Reference implementations and SDKs
+
+- [vercel/acp-handler](https://github.com/vercel/acp-handler) — generic Next.js handler for ACP. Platform-agnostic.
+- [NVIDIA-AI-Blueprints/Retail-Agentic-Commerce](https://github.com/NVIDIA-AI-Blueprints/Retail-Agentic-Commerce) — NVIDIA blueprint covering ACP + UCP.
+- [Universal-Commerce-Protocol/js-sdk](https://github.com/Universal-Commerce-Protocol/js-sdk) — official UCP TypeScript SDK with RFC 9421 verifier.
+- [Universal-Commerce-Protocol/python-sdk](https://github.com/Universal-Commerce-Protocol/python-sdk) — official UCP Python SDK.
+- [Universal-Commerce-Protocol/ucp-schema](https://github.com/Universal-Commerce-Protocol/ucp-schema) — Rust validator.
+- [Universal-Commerce-Protocol/samples](https://github.com/Universal-Commerce-Protocol/samples) — sample agents and merchants.
+- [xpaysh/agentic-commerce-plugin-template](https://github.com/xpaysh/agentic-commerce-plugin-template) — TypeScript monorepo template for new per-platform plugins.
+
+## `@xpaysh/*` packages (npm)
+
+Schema-vendored, framework-agnostic, deterministic. Every package is tested against the canonical upstream schemas; the test fixtures themselves are published as a package.
+
+| Package | What it ships |
+|---|---|
+| [`@xpaysh/acp-schemas`](https://www.npmjs.com/package/@xpaysh/acp-schemas) | Real ACP JSON Schemas vendored from upstream `spec/2026-04-17`. 7 bundles, 140 type defs. |
+| [`@xpaysh/ucp-schemas`](https://www.npmjs.com/package/@xpaysh/ucp-schemas) | 83 UCP schemas vendored from `Universal-Commerce-Protocol/ucp`. `generateUcpProfile()` + `registerForValidation(ajv)`. |
+| [`@xpaysh/ap2-schemas`](https://www.npmjs.com/package/@xpaysh/ap2-schemas) | AP2 namespace (`SPEC_VERSION='draft'` while upstream is pre-stable). |
+| [`@xpaysh/adapter-contract`](https://www.npmjs.com/package/@xpaysh/adapter-contract) | The `PlatformAdapter` TS interface every per-platform plugin implements. |
+| [`@xpaysh/template-adapter`](https://www.npmjs.com/package/@xpaysh/template-adapter) | Working reference `PlatformAdapter` backed by a deterministic in-memory catalog. Copy as the starting point for a new plugin. |
+| [`@xpaysh/discovery`](https://www.npmjs.com/package/@xpaysh/discovery) | Pure-function generators for `/llms.txt`, schema.org JSON-LD, `robots.txt`, A2A `agent-card.json`, RFC 9728. Zero deps. |
+| [`@xpaysh/cart-deeplinks`](https://www.npmjs.com/package/@xpaysh/cart-deeplinks) | HS256-signed JWT cart-handoff URLs. |
+| [`@xpaysh/storefront-audit`](https://www.npmjs.com/package/@xpaysh/storefront-audit) | Discovery-layer auditor + `ac-doctor` CLI; rejects fictitious well-known URIs. |
+| [`@xpaysh/http-message-signatures`](https://www.npmjs.com/package/@xpaysh/http-message-signatures) | RFC 9421 sign/verify; ed25519 + hmac-sha256; targets the component set UCP REST uses. |
+| [`@xpaysh/conformance-fixtures`](https://www.npmjs.com/package/@xpaysh/conformance-fixtures) | Golden ACP + UCP request/response payloads; every fixture cross-validates against the canonical schemas via Ajv. |
+| [`@xpaysh/acp-session-store`](https://www.npmjs.com/package/@xpaysh/acp-session-store) | ACP checkout-session storage: InMemorySessionStore + DynamoDBSessionStore behind a single interface. |
+| [`@xpaysh/lint-wellknowns`](https://www.npmjs.com/package/@xpaysh/lint-wellknowns) | CI linter + GitHub Action that fails builds emitting fictitious well-known URIs. |
+
+---
+
+## Payment rails
+
+These sit *below* the commerce protocols. Any commerce protocol can plug into any rail.
+
+| Rail | What it is | Best fit |
+|---|---|---|
+| [**Stripe MPP**](https://mpp.dev) | Machine Payments Protocol, payment-method agnostic, co-authored by Tempo + Stripe | cards, stablecoins, fiat acceptance |
+| [**x402**](https://x402.org) | HTTP 402 payment rail, stablecoin settlement, instant | agent micropayments, low-friction stablecoin |
+| **Cards (direct)** | Stripe / Adyen / Braintree / Checkout.com via standard PSP APIs | high-value consumer checkout, existing PSP relationship |
+| **Stablecoin direct** | Bridge, Tempo, Privy | programmatic onchain settlement without a payments protocol |
+
+xpay✦ runs an x402 facilitator listed on `x402.org`: [facilitator.xpay.sh](https://www.xpay.sh/x402-facilitators/xpay/) (>30K settled txns onchain as of 2026-06).
+
+---
+
+## Discovery standards
+
+The well-known URIs and registries an agentic-commerce surface actually uses. Real, externally verifiable, not invented.
+
+| Path / standard | Spec | Purpose |
+|---|---|---|
+| `/llms.txt` | [llmstxt.org](https://llmstxt.org) | Markdown, LLM-readable site map |
+| `/.well-known/agent-card.json` | [a2a-protocol.org](https://a2a-protocol.org/) | A2A 1.0, IANA-registered 2025-08-01 |
+| schema.org JSON-LD | [schema.org](https://schema.org) | `Product`, `Offer`, `AggregateOffer`, `BreadcrumbList` |
+| `/robots.txt` | [RFC 9309](https://datatracker.ietf.org/doc/rfc9309/) | Allowlist/block: `GPTBot`, `ClaudeBot`, `Google-Extended`, `PerplexityBot`, `CCBot`, `Amazonbot` |
+| `/.well-known/oauth-protected-resource` | [RFC 9728](https://datatracker.ietf.org/doc/rfc9728/) | Agent OAuth |
+| `/.well-known/ucp` (no extension) | [UCP business profile](https://ucp.dev/latest/specification/overview/), [Google's UCP guide](https://developers.google.com/merchant/ucp/guides/ucp-profile) | UCP capability negotiation. On-the-wire `version` is a YYYY-MM-DD date (e.g. `2026-05-18`). Status `draft` upstream. Fetched by Google, Shopify, Etsy, Wayfair, Target, Walmart. |
+
+### Files to **not** emit
+
+The negative space. Every entry below has been seen in plugin output or blog posts in 2025–2026 and is **not** in any active spec. If you see a published implementation emitting one, [open an issue](https://github.com/xpaysh/awesome-agentic-commerce/issues) and we'll list it here.
+
+- `/.well-known/agentic-commerce.json`
+- `/.well-known/ucp.json` (the real UCP profile path is `/.well-known/ucp`, no extension)
+- `/.well-known/acp.json`
+- `/.well-known/ap2.json`
+- `/.well-known/mcp.json`
+- `/.well-known/ai-plugin.json` (deprecated, OpenAI's old GPT plugin manifest)
+- `/agents.txt`
+- `/ai.txt`
+
+---
+
+## Conformance and tooling
+
+- [Universal-Commerce-Protocol/conformance](https://github.com/Universal-Commerce-Protocol/conformance) — official UCP conformance suite.
+- [`@xpaysh/conformance-fixtures`](https://www.npmjs.com/package/@xpaysh/conformance-fixtures) — golden ACP + UCP request/response payloads cross-validating against canonical schemas via Ajv.
+- [`@xpaysh/storefront-audit`](https://www.npmjs.com/package/@xpaysh/storefront-audit) — `ac-doctor` CLI; audits a live storefront for the discovery surface above.
+- [`@xpaysh/lint-wellknowns`](https://www.npmjs.com/package/@xpaysh/lint-wellknowns) — CI linter; fails builds emitting the "files to not emit" list above.
+
+---
+
+## Working examples
+
+Each example is a "vending machine" agent (the smallest end-to-end agent-buys-from-merchant flow) implemented against a different protocol stack. Clone and run in under five minutes.
 
 ```bash
-# Get started in 30 seconds
 git clone https://github.com/xpaysh/agentic-economy-boilerplate
 cd agentic-economy-boilerplate
 
-# Choose your protocol and run
-cd x402-vending-machine && npm start      # Crypto micropayments
-cd ap2-vending-machine && npm start       # Enterprise authorization  
-cd acp-stripe-vending-machine && npm start # Consumer checkout
-cd pay3-vending-machine && npm start      # Stablecoin automation
-cd mastercard-vending-machine && npm start # TradFi integration
+cd acp-stripe-vending-machine && npm start   # OpenAI + Stripe checkout
+cd x402-vending-machine && npm start         # stablecoin micropayments
+cd ap2-vending-machine && npm start          # verifiable mandates
+cd pay3-vending-machine && npm start         # USDC/USDT autonomous
+cd mastercard-vending-machine && npm start   # tokenized cards
 ```
 
-**🎯 Each example demonstrates**:
-- Authentication & authorization
-- Service discovery
-- Payment processing
-- Error handling
-- Security best practices
+Long-form: [`use-cases/README.md`](./use-cases/README.md), [`implementations/README.md`](./implementations/README.md).
 
 ---
 
-## 🧭 Protocol Selector Quiz
+## Weekly updates
 
-Not sure which protocols to use? Answer these questions to get your recommended stack:
+[`UPDATES.md`](./UPDATES.md) — week-by-week ecosystem changelog. Newest first.
 
-### 🔍 What's your primary use case?
-- **🤖 AI Agent Micropayments** → x402 + MCP + A2A
-- **🏢 Enterprise B2B Automation** → AP2 + A2A + Enterprise Identity
-- **🛒 Consumer AI Commerce** → ACP (OpenAI/Stripe) + MCP
-- **🌐 Cross-Chain DeFi Agents** → Pay3 + Olas + MCP
-- **💳 Traditional Finance Integration** → Mastercard Agent Pay + AP2
-
-### 🏗️ What's your technical background?
-- **Web2 Developer** → Start with ACP (Stripe) + MCP
-- **Web3 Developer** → Start with x402 + Olas
-- **Enterprise Developer** → Start with AP2 + A2A
-- **AI/ML Engineer** → Start with MCP + your preferred payment layer
-
-### 📊 What's your transaction volume?
-- **< 1K/month** → x402 (zero fees)
-- **1K-100K/month** → ACP or AP2
-- **100K+/month** → Enterprise solutions (AP2 + custom)
+External companions: [agenticeconomy.substack.com](https://agenticeconomy.substack.com/s/agentic-economy-weekly-updates), [xpay.sh interactive timeline](https://www.xpay.sh/resources/agentic-economy-timeline/).
 
 ---
 
-## 📚 Deep Dive Documentation
+## Related lists
 
-> 📊 **Track Latest Developments**: [Weekly Updates](./UPDATES.md) | [Industry Analysis](https://agenticeconomy.substack.com/s/agentic-economy-weekly-updates)
-
-### 📖 [Protocol Documentation](./protocols/README.md)
-- [Identity & Trust Protocols](./protocols/identity-trust.md)
-- [Discovery Protocols](./protocols/discovery.md)  
-- [Communication Protocols](./protocols/communication.md)
-- [Commerce Protocols](./protocols/commerce.md)
-
-### 🛠️ [Implementation Guides](./implementations/README.md)
-- [SDKs & Libraries](./implementations/sdks.md)
-- [Frameworks & Tools](./implementations/frameworks.md)
-- [Security Best Practices](./implementations/security.md)
-
-### 💡 [Use Cases & Patterns](./use-cases/README.md)
-- [AI Agent Micropayments](./use-cases/micropayments.md)
-- [Multi-Agent Coordination](./use-cases/coordination.md)
-- [Autonomous Marketplaces](./use-cases/marketplaces.md)
-- [Enterprise Automation](./use-cases/enterprise.md)
+- [Awesome MCP Servers](https://github.com/punkpeye/awesome-mcp-servers) — sister ecosystem; many entries are MCP servers exposed by commerce platforms.
+- [Awesome x402](https://github.com/xpaysh/awesome-x402) — x402-specific (the rail under several entries above).
+- [Awesome AI Agents](https://github.com/e2b-dev/awesome-ai-agents) — general AI agent resources.
+- [Awesome LLM Apps](https://github.com/Shubhamsaboo/awesome-llm-apps) — LLM application catalog.
 
 ---
 
-## 📊 Market Analysis
+## Contributing
 
-> 🎯 **Live Market Data**: [Weekly Updates](./UPDATES.md) tracks real protocol metrics and ecosystem developments
+This list aims for **signal over volume**. Every entry must earn its line.
 
-### 🚀 Growth Metrics (2025)
-- **Market Size**: $5T projected by 2030 ([McKinsey Global Institute](https://www.mckinsey.com))
-- **Protocol Adoption**: 88% of executives piloting agents ([Deloitte Enterprise AI Survey 2025](https://deloitte.com))
-- **Transaction Growth**: 492% year-over-year (x402) ([Coinbase Ecosystem Report Q4 2025](https://coinbase.com))
-- **Enterprise Adoption**: 46% fear falling behind without agents ([Gartner AI Adoption Study 2025](https://gartner.com))
+**Acceptance criteria:**
 
-### 📈 Live Protocol Stats
-- **x402**: 500K+ weekly transactions, $180M+ ecosystem value
-- **ACP**: Powers millions of AI-user transactions via ChatGPT
-- **AP2**: Backed by 60+ organizations including PayPal, Mastercard  
-- **MCP**: Essential for Claude integrations, growing rapidly
+1. **Real and reachable.** A working repo, a live endpoint, or a published package. No vapor, no "coming soon."
+2. **Speaks at least one of {ACP, UCP, AP2}** end to end (or is a payment rail, discovery standard, or tooling repo the protocols depend on).
+3. **One-sentence "why this matters"** — what the entry does that the existing list doesn't already cover. If we can't write that sentence, the entry doesn't go in.
+4. **License declared.** OSS license in the repo. Closed-source is fine for hosted services if the API is public.
+5. **Last commit within 12 months**, or the entry is tagged `legacy` and kept for reference only.
 
-### 🔮 2025 Predictions
-- Multi-protocol agents become standard (hybrid stacks)
-- Enterprise adoption accelerates with compliance frameworks
-- Cross-chain interoperability becomes critical
-- AI-to-AI marketplaces reach mainstream adoption
+**Two ways in:**
 
-> 📈 **Market Insights**: Detailed analysis available in [Agentic Economy Substack](https://agenticeconomy.substack.com/s/agentic-economy-weekly-updates)
+- **Add an entry**: open a PR adding your repo to the relevant section. Full criteria in [`community/CONTRIBUTING.md`](./community/CONTRIBUTING.md).
+- **Build a new per-platform plugin**: bounties pay per accepted plugin. Starter kit at [`xpaysh/agentic-commerce-plugin-template`](https://github.com/xpaysh/agentic-commerce-plugin-template).
 
 ---
 
-## 🌟 Ecosystem Projects
+## License
 
-### 🏆 Featured Implementations
-- **[Claude x402 Integration](link)** - Anthropic's Claude with crypto payments
-- **[GPT-4 AP2 Enterprise](link)** - OpenAI + Google enterprise workflow
-- **[Telegram Pay3 Bots](link)** - Autonomous Telegram payment bots
-- **[Multi-Agent Coordination](link)** - A2A + multiple payment rails
-
-### 🎯 Developer Showcases
-*Submit your project: [Contribution Guidelines](./community/CONTRIBUTING.md)*
-
----
-
-## 👥 Community & Resources
-
-### 💬 Join the Community
-- **Discord**: [Agentic Economy Builders](https://discord.gg/vukXDGT7n5)
-- **Twitter**: [@xpaysh](https://x.com/xpaysh) 
-- **Newsletter**: [Weekly Updates](./UPDATES.md)
-
-### 🤝 Contributing
-We're actively looking for:
-- Protocol documentation improvements
-- New boilerplate examples
-- Security audit reviews
-- Market research data
-- Community translations
-
-See our [Contributing Guide](./community/CONTRIBUTING.md) for details.
-
----
-
-## 📊 **Stay Updated on the Fastest-Growing Tech Sector**
-
-> **🔥 [Weekly Changelog](./UPDATES.md)** - Track protocol launches, partnerships, and ecosystem growth  
-> **📰 [Industry Analysis](https://agenticeconomy.substack.com/s/agentic-economy-weekly-updates)** - Deep market insights and trend analysis  
-> **🎯 [Interactive Timeline](https://www.xpay.sh/resources/agentic-economy-timeline/)** - Explore the complete 2025 agentic inflection point
-
-**From $0 to $180M+ in 9 months. Don't miss the next wave.**
-
----
-
-## 🔗 Related Resources
-
-### 🎯 Other Awesome Lists
-- [Awesome x402](https://github.com/xpaysh/awesome-x402) - Deep dive on HTTP 402 payments
-- [Awesome AI Agents](https://github.com/e2b-dev/awesome-ai-agents) - General AI agent resources
-- [Awesome LLM Apps](https://github.com/Shubhamsaboo/awesome-llm-apps) - Large Language Model applications
-- [Awesome Web3](https://github.com/ahmet/awesome-web3/) - Web3 ecosystem resources                                                             
-
-### {xpay✦} Ecosystem
-- [{xpay✦}](https://www.xpay.sh/) - The official website for {xpay✦}
-- [GitHub](https://github.com/xpaysh) - The GitHub organization for {xpay✦}
-- [Docs](https://docs.xpay.sh) - The official documentation for {xpay✦}
-- [Discord](https://discord.gg/vukXDGT7n5) - Join the {xpay✦} community on Discord
-
-### 📚 Official Documentation
-- [x402 Foundation Docs](https://x402.gitbook.io/x402)
-- [Google A2A Protocol](https://a2a-protocol.org/latest/)
-- [Anthropic MCP](https://modelcontextprotocol.io)
-- [OpenAI ACP Documentation](https://developers.openai.com/commerce/)
----                                                                                                                    
-
-                                                                                                                       
-
-## 📄 License                                                                                                           
-
-                                                                                                                       
-
-[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)          
-
-                                                                                                                       
-
-This work is licensed under [Creative Commons Zero v1.0 Universal](LICENSE).                                           
-
-                                                                                                                       
-
----   
-
-**🚀 Ready to build the agentic economy? Start with our [5-minute boilerplates](https://github.com/xpaysh/agentic-economy-boilerplate) and join thousands of developers building autonomous agent systems!**
+[CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/). Public domain dedication. Use freely.
