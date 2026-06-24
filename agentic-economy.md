@@ -88,6 +88,4 @@ The active protocols (ACP, UCP, AP2, TACP), the payment rails beneath (MPP, x402
 
 ## Why we narrowed to commerce
 
-The previous `awesome-agentic-economy` framing covered all four layers equally. In practice, builders land on this repo overwhelmingly for the **commerce** layer: which protocol to implement, which platform plugin to install, which payment rail to use, what discovery surface to emit. Identity, discovery, and communication are surveyed extensively elsewhere (W3C, IANA, the MCP and A2A communities). Commerce is the layer where the agentic-economy thesis has not yet been canonically mapped, and where this list adds the most signal.
-
-The 4-layer view above is the durable conceptual model. The depth lives in the main list.
+Builders land on this repo overwhelmingly for the commerce layer. Identity, discovery, and communication are well-surveyed elsewhere (W3C, IANA, the MCP and A2A communities). Commerce is where the depth lives in the main list.
