@@ -38,6 +38,7 @@ How agents prove who they are and decide who to trust.
 | **Mastercard Know-Your-Agent** | TradFi-to-agent identity bridge, card-network integration | pilot |
 | **Salesforce Agent Cloud** | Enterprise agent identity, CRM-integrated | new 2025 |
 | **Forter TACP** | Agent-trust signal envelope (JWS + JWE) over any commerce flow | production |
+| **[ERC-8004](https://eips.ethereum.org/EIPS/eip-8004) (Trustless Agents)** | On-chain agent identity + reputation registries. Permissionless, EVM-native, signed feedback | production (Base) |
 
 Long form: [`protocols/identity-trust.md`](./protocols/identity-trust.md).
 
@@ -95,6 +96,7 @@ The active protocols (ACP, UCP, AP2, TACP), the payment rails beneath (MPP, x402
 These sit alongside or compose multiple rails. Not first-party commerce protocols by themselves, but worth tracking.
 
 - **[MoltsPay Universal Payment Protocol (UPP)](https://moltspay.com)** by Zen7 — multi-chain abstraction layer that routes per chain: x402 / EIP-3009 (Base, Polygon), MPP (Tempo), Pay-for-Success (Solana), pre-approval (BNB). 8 chains, gasless via client-side signatures + facilitator execution. Node.js + Python SDKs. Service discovery built in.
+- **[ERC-8183](https://eips.ethereum.org/EIPS/eip-8183) (Agentic Commerce)** — on-chain agent-to-agent service-delivery escrow standard. Distinct from x402's stateless micropayment model: ERC-8183 holds funds across a Job lifecycle (Client → Provider → Evaluator → settlement), with 3-way fee splits, pluggable evaluator policies (manual review, JSON-schema, HTTP health-check), refund on expiry, and native reputation reflux into ERC-8004. USDC on the reference deployment (Base).
 
 ---
 
