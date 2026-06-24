@@ -1,36 +1,21 @@
-# Agentic Economy Updates
+# Weekly Updates
 
-Developer-focused weekly updates tracking the explosive growth of autonomous AI economy protocols, frameworks, and ecosystem developments.
+Week-by-week changelog for [`xpaysh/awesome-agentic-commerce`](https://github.com/xpaysh/awesome-agentic-commerce). Newest first. For the canonical protocol comparison and current status, see the [main README](./README.md). External companions: [agenticeconomy.substack.com](https://agenticeconomy.substack.com/s/agentic-economy-weekly-updates), [interactive timeline](https://www.xpay.sh/resources/agentic-economy-timeline/).
 
-> 🌐 **Cross-Platform Coverage**  
-> - **📊 Developer Updates**: [GitHub Weekly Updates](https://github.com/xpaysh/awesome-agentic-economy/blob/main/UPDATES.md) (This page)
-> - **📰 Industry Analysis**: [Agentic Economy Substack](https://agenticeconomy.substack.com/s/agentic-economy-weekly-updates)
-> - **🎯 Interactive Timeline**: [Agentic Economy Timeline](https://www.xpay.sh/resources/agentic-economy-timeline/)
-
-## 📊 Current Status - March 17, 2026
-
-| Protocol | Status | Latest Version | Repository | Weekly Transactions | YoY Growth |
-|----------|---------|----------------|------------|-------------------|------------|
-| **[x402](https://x402.org/)** | 🟢 Production | v2.0.0 | [coinbase/x402](https://github.com/coinbase/x402) | 2.1M+ | +820% |
-| **[Stripe ACP](https://stripe.com/newsroom/news/agentic-commerce-suite)** | 🟢 Production | v1.2.0 | [agentic-commerce-protocol](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol) | 340K+ merchants | +45% |
-| **[Google UCP](https://developers.google.com/)** | 🟢 Production | v1.0.0 | Private | Machine Feeds live | Established |
-| **[Google A2A](https://github.com/google/A2A)** | 🟢 Production | v0.3.0 | [google/A2A](https://github.com/google/A2A) | Linux Foundation | +200% |
-| **[Google AP2](https://developers.google.com/ap2)** | 🚧 Draft | v0.1.0 | Private | 60+ orgs backing | New |
-| **[MCP](https://modelcontextprotocol.io/)** | 🟢 Production | v0.5.0 | [modelcontextprotocol](https://github.com/modelcontextprotocol) | 97M npm downloads/mo | +116% |
-| **[Warden](https://wardenprotocol.org/)** | 🟢 Production | v1.0.0 | [warden-protocol](https://github.com/warden-protocol) | Agent Keychains | +45% |
-| **[XMTP](https://xmtp.org/)** | 🟢 Production | v3.0.0 | [xmtp/xmtp-js](https://github.com/xmtp/xmtp-js) | Web3 messaging | +78% |
-| **[Visa TAP](https://developer.visa.com/capabilities/trusted-agent-protocol/overview)** | 🟢 Production | v1.0.0 | Private | 100+ countries, 80M+ terminals | Global |
-| **[Mastercard Agent Pay](https://investors.fiserv.com/newsroom/detail/2882)** | 🟢 Production | v1.0.0 | Private | 100+ countries, 50M+ terminals | Global |
-| **[World AgentKit](https://worldcoin.org/agent-kit)** | 🚧 Preview | v0.1.0 | Private | Biometric agent identity | New |
-| **[Stripe Tempo](https://tempo.stripe.com)** | 🚧 Testnet | v0.1.0 | Private | Agent-optimized L2 | New |
-
-**💰 Total Weekly Volume**: $480M+ across all protocols
+> **Note on the prior status table.** Earlier versions of this file carried a "Current Status" table with transaction-volume and growth-rate claims sourced from press releases and self-reports. The numbers weren't independently re-verified, so they've been removed. Adoption claims now live only in the main README's protocol comparison, where each cell links to a primary source.
 
 ---
 
-# 📅 Weekly Updates
+## Week of June 24, 2026
+**Theme**: List restructure. Commerce becomes the prominent surface.
 
-## 📅 Week of March 16, 2026
+[Full update →](./updates/2026-06-24.md)
+
+Repo renamed from `awesome-agentic-economy` to `awesome-agentic-commerce`. README rewritten to lead with commerce. New Glossary, Compatibility matrix, Editorial stance, Protocol-level anti-patterns, Version pinning sections. `@xpaysh/*` packages demoted to a separate file. Unverifiable adoption claims dropped across the board.
+
+---
+
+## Week of March 16, 2026
 **Theme**: Identity is the Missing Piece
 
 [📄 **Full Update** →](./updates/2026-03-16.md)

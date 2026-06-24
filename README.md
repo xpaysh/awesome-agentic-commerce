@@ -12,9 +12,19 @@ This list covers the layer where AI agents (ChatGPT, Claude, Gemini, custom) dis
 
 The broader 4-layer agentic-economy view (identity, discovery, communication, commerce) lives in [`agentic-economy.md`](./agentic-economy.md). The previous repo at `xpaysh/awesome-agentic-economy` 302-redirects here.
 
-> **Recently added** (2026-03-16): identity-layer protocols (AP2 mandates, W3C VCs, Visa TAP) expanded. Full weekly log in [`UPDATES.md`](./UPDATES.md).
+> **Latest** (2026-06-24): list restructured. Repo renamed from `awesome-agentic-economy`. New Glossary, Compatibility matrix, Editorial stance, anti-patterns, version pinning. Full notes: [`updates/2026-06-24.md`](./updates/2026-06-24.md). Weekly log: [`UPDATES.md`](./UPDATES.md).
 
-**Last reviewed:** 2026-06-24.
+**Last reviewed:** 2026-06-24. Next quarterly verification batch: 2026-Q3.
+
+## Editorial stance
+
+If you're picking one protocol to implement, this is the short version. Long form lives in [`protocols/commerce.md`](./protocols/commerce.md) and the [comparison page](https://docs.xpay.sh/agentic-commerce-protocols/comparison).
+
+- **Already on Stripe or shipping into ChatGPT?** → **ACP**. The `delegate_payment` flow is the surface that justifies the protocol; without it ACP is a cart API in disguise.
+- **Need to stay rail-flexible and vendor-neutral?** → **UCP**. Pay the RFC 9421 signature cost up front; that's what makes the protocol agent-safe.
+- **Mandate-heavy or audit-sensitive flow?** → **AP2**. Verifiable Credentials are the entire authorization argument; if you're skipping VC verification, pick a different protocol.
+- **True micropayments (sub-cent to single-digit USD)?** → **x402** as the rail under any of the above.
+- **All four are draft or recently released.** Pin the spec date you vendor against (see [Version pinning](#version-pinning-spec-dates-this-list-assumes)) and expect minor shape changes for at least the next two quarters.
 
 ## Contents
 
@@ -24,7 +34,7 @@ The broader 4-layer agentic-economy view (identity, discovery, communication, co
 - [Compatibility matrix](#compatibility-matrix-platform--protocol--rail)
 - [Per-platform plugins](#per-platform-plugins)
 - [Reference implementations and SDKs](#reference-implementations-and-sdks)
-- [`@xpaysh/*` packages (npm)](#xpaysh-packages-npm)
+- [Maintainer's npm packages](#maintainers-npm-packages) (in [`xpaysh-packages.md`](./xpaysh-packages.md))
 - [Payment rails](#payment-rails)
 - [Discovery standards](#discovery-standards)
 - [Files to **not** emit](#files-to-not-emit)
@@ -87,12 +97,14 @@ Long form: [`protocols/commerce.md`](./protocols/commerce.md).
 
 ## Protocol comparison
 
+> **Status warning.** UCP and AP2 are still draft. ACP cuts dated releases. Field names, required arrays, and authentication semantics for the draft protocols can change between minor versions. Pin to a date and rebuild quarterly.
+
 | Protocol | Spec repo | Sponsor | Surface | Discovery | Payment auth | Signed requests |
 |---|---|---|---|---|---|---|
 | **ACP** — Agentic Commerce Protocol | [agentic-commerce-protocol/agentic-commerce-protocol](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol) | OpenAI · Stripe · Meta (TSC, [governance](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/blob/main/docs/governance.md)) | Cart, checkout, delegated payment, discounts, fulfillment | partner-specific (no well-known) | `delegate_payment` flow | optional |
 | **UCP** — Universal Commerce Protocol | [Universal-Commerce-Protocol/ucp](https://github.com/Universal-Commerce-Protocol/ucp) | Vendor-neutral Tech Council | Cart, checkout, order, catalog, refunds, disputes | `/.well-known/ucp` (business profile) | external (any rail) | RFC 9421 per spec |
 | **AP2** — Agent Payments Protocol | [google-agentic-commerce/AP2](https://github.com/google-agentic-commerce/AP2) | Google | Signed mandates, A2A transport | A2A agent-card | verifiable credentials | yes (JWS) |
-| **TACP** — Trusted Agentic Commerce | [forter/trusted-agentic-commerce-protocol](https://github.com/forter/trusted-agentic-commerce-protocol) | Forter | Parallel agent-trust overlay (orthogonal to cart/checkout) | JWKS | n/a (signal layer) | JWS + JWE |
+| **TACP** — Trusted Agentic Commerce | [forter/trusted-agentic-commerce-protocol](https://github.com/forter/trusted-agentic-commerce-protocol) | Forter | Parallel agent-trust overlay (orthogonal to cart/checkout) | JWKS endpoint (key publication only; no capability discovery) | n/a (signal layer) | JWS + JWE |
 
 Side-by-side technical comparison: [docs.xpay.sh/agentic-commerce-protocols/comparison](https://docs.xpay.sh/agentic-commerce-protocols/comparison).
 
@@ -102,18 +114,20 @@ Side-by-side technical comparison: [docs.xpay.sh/agentic-commerce-protocols/comp
 
 What composes end to end. ✓ = covered by an entry in this list; — = no known implementation; *partial* = present but with caveats noted in the linked entry. License is the plugin's license; rail support varies by configuration.
 
-| Platform | ACP | UCP | AP2 | Rails supported | Maintainer | License |
-|---|:---:|:---:|:---:|---|---|---|
-| WooCommerce | ✓ | ✓ | ✓ | x402, cards via PSP | xpaysh | GPL-2.0 |
-| commercetools | ✓ | ✓ | ✓ | x402, cards | xpaysh | see repo |
-| BigCommerce | ✓ | ✓ | ✓ | x402, cards | xpaysh | see repo |
-| Magento / Adobe Commerce | ✓ | ✓ | ✓ | x402, cards | xpaysh | see repo |
-| Shopify | ✓ | ✓ | ✓ | x402, cards | xpaysh | see repo |
-| Salesforce B2C Commerce | ✓ | ✓ | ✓ | x402, cards | xpaysh | see repo |
-| Saleor | ✓ | ✓ | ✓ | x402, cards | xpaysh | see repo |
-| PrestaShop | ✓ | ✓ | ✓ | x402, cards | xpaysh | see repo |
+**How to read this:** rows are sorted vendor-first. `xpaysh` rows are **reference implementations**, not production-hardened first-party paths. Where a vendor publishes an official ACP / UCP / AP2 path on their platform, it lands above the `xpaysh` row for that platform.
 
-First-party (vendor-maintained) ACP/UCP paths are noted in [Per-platform plugins](#per-platform-plugins) where they exist publicly. Where this matrix shows only `xpaysh`, it reflects what is publicly published as a reference implementation; vendor-internal work may exist that isn't open-source.
+| Platform | ACP | UCP | AP2 | Rails supported | Maintainer | Type |
+|---|:---:|:---:|:---:|---|---|---|
+| WooCommerce | ✓ | ✓ | ✓ | x402, cards via PSP | xpaysh | reference impl |
+| commercetools | ✓ | ✓ | ✓ | x402, cards | xpaysh | reference impl |
+| BigCommerce | ✓ | ✓ | ✓ | x402, cards | xpaysh | reference impl |
+| Magento / Adobe Commerce | ✓ | ✓ | ✓ | x402, cards | xpaysh | reference impl |
+| Shopify | ✓ | ✓ | ✓ | x402, cards | xpaysh | reference impl |
+| Salesforce B2C Commerce | ✓ | ✓ | ✓ | x402, cards | xpaysh | reference impl |
+| Saleor | ✓ | ✓ | ✓ | x402, cards | xpaysh | reference impl |
+| PrestaShop | ✓ | ✓ | ✓ | x402, cards | xpaysh | reference impl |
+
+A `✓` in this table means an entry exists in [Per-platform plugins](#per-platform-plugins) that implements the protocol. It does not imply production-tested adoption at scale on that platform; check the linked repo for status. Vendor-internal work that isn't open-source isn't tracked here.
 
 ---
 
@@ -151,24 +165,9 @@ Platforms without a current entry (OpenCart, Shopware, Spree, Sylius, nopCommerc
 | [Universal-Commerce-Protocol/conformance](https://github.com/Universal-Commerce-Protocol/conformance) | Conformance suite | UCP | mixed | UCP TSC *(official)* |
 | [xpaysh/agentic-commerce-plugin-template](https://github.com/xpaysh/agentic-commerce-plugin-template) | Monorepo template | ACP, UCP, AP2 | TypeScript | xpaysh |
 
-## `@xpaysh/*` packages (npm)
+## Maintainer's npm packages
 
-One maintainer's framework-agnostic package family. Schema-vendored, tested against canonical upstream schemas; the test fixtures themselves ship as a package.
-
-| Package | What it does |
-|---|---|
-| [`@xpaysh/acp-schemas`](https://www.npmjs.com/package/@xpaysh/acp-schemas) | ACP JSON Schemas vendored from the upstream released spec, pinned to a dated version |
-| [`@xpaysh/ucp-schemas`](https://www.npmjs.com/package/@xpaysh/ucp-schemas) | UCP schemas vendored from upstream + `generateUcpProfile()` + `registerForValidation(ajv)` |
-| [`@xpaysh/ap2-schemas`](https://www.npmjs.com/package/@xpaysh/ap2-schemas) | AP2 namespace (`SPEC_VERSION='draft'` until upstream cuts a stable tag) |
-| [`@xpaysh/adapter-contract`](https://www.npmjs.com/package/@xpaysh/adapter-contract) | The `PlatformAdapter` TS interface every per-platform plugin implements |
-| [`@xpaysh/template-adapter`](https://www.npmjs.com/package/@xpaysh/template-adapter) | Reference `PlatformAdapter` backed by a deterministic in-memory catalog. Starting point for new plugins. |
-| [`@xpaysh/discovery`](https://www.npmjs.com/package/@xpaysh/discovery) | Pure-function generators for `/llms.txt`, schema.org JSON-LD, `robots.txt`, A2A `agent-card.json`, RFC 9728. Zero deps. |
-| [`@xpaysh/cart-deeplinks`](https://www.npmjs.com/package/@xpaysh/cart-deeplinks) | HS256-signed JWT cart-handoff URLs |
-| [`@xpaysh/storefront-audit`](https://www.npmjs.com/package/@xpaysh/storefront-audit) | Discovery-layer auditor + `ac-doctor` CLI; rejects fictitious well-known URIs |
-| [`@xpaysh/http-message-signatures`](https://www.npmjs.com/package/@xpaysh/http-message-signatures) | RFC 9421 sign/verify; ed25519 + hmac-sha256; targets the component set UCP REST uses |
-| [`@xpaysh/conformance-fixtures`](https://www.npmjs.com/package/@xpaysh/conformance-fixtures) | Golden ACP + UCP request/response payloads; every fixture cross-validates via Ajv |
-| [`@xpaysh/acp-session-store`](https://www.npmjs.com/package/@xpaysh/acp-session-store) | ACP checkout-session storage behind one interface; InMemorySessionStore + DynamoDBSessionStore |
-| [`@xpaysh/lint-wellknowns`](https://www.npmjs.com/package/@xpaysh/lint-wellknowns) | CI linter + GitHub Action that fails builds emitting fictitious well-known URIs |
+The maintainer of this list ([xpay✦](https://www.xpay.sh)) publishes a framework-agnostic `@xpaysh/*` package family covering schema vendoring, RFC 9421 signatures, well-known generators, and conformance fixtures for ACP / UCP / AP2. Listed separately in [`xpaysh-packages.md`](./xpaysh-packages.md) so the main list stays neutral.
 
 ---
 
