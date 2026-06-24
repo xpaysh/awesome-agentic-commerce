@@ -71,6 +71,7 @@ How agents and tools talk to each other.
 | **A2A** (Google) | Agent-to-agent communication, real-time coordination | production |
 | **MCP** (Anthropic) | Agent-to-tool communication, context sharing | production |
 | **IBM ACP wire format** | Cross-framework agent communication, human-in-the-loop | beta |
+| **[Summoner Network](https://github.com/Summoner-Network/summoner-agents)** | Agent-to-agent networking stack: long-lived TCP sessions, server-decoupled agents, nonce-chain handshake tracing. Python SDK + Rust relay. | production |
 
 Long form: [`protocols/communication.md`](./protocols/communication.md).
 
