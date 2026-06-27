@@ -259,6 +259,10 @@ cd x402-vending-machine && npm start         # stablecoin micropayments
 cd ap2-vending-machine && npm start          # verifiable mandates
 ```
 
+### Live merchant fixtures
+
+- [Packrift UCP shipping-supplies merchant](https://mcp.packrift.com/ai/packrift-ucp-shipping-supplies-starter-kit.html) - live Shopify packaging merchant with native UCP catalog/cart/checkout plus no-auth MCP tools for shipping-supplies storefront builders.
+
 Long form: [`use-cases/README.md`](./use-cases/README.md), [`implementations/README.md`](./implementations/README.md).
 
 ---
