@@ -181,6 +181,7 @@ These sit *below* the commerce protocols. Any commerce protocol can plug into an
 | **x402** | HTTP 402 native | stablecoin onchain, ~seconds | agent micropayments, low-friction stablecoin | [x402.org](https://x402.org) |
 | **Cards (direct)** | PSP APIs | T+1+ | high-value consumer checkout, existing PSP relationship | Stripe / Adyen / Braintree / Checkout.com |
 | **Stablecoin direct** | Onchain primitives | onchain | programmatic settlement without a payments protocol | Bridge / Tempo / Privy |
+| **Nano (XNO)** | Layer-1, self-custodied | feeless, ~0.3 s finality, no per-leg gas | micropayments where the whole amount must reach the seller and no issuer may freeze | [nano.org](https://nano.org) |
 
 xpay✦ operates an x402 facilitator listed on [x402.org](https://x402.org): [facilitator.xpay.sh](https://www.xpay.sh/x402-facilitators/xpay/).
 
