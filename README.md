@@ -3,7 +3,7 @@
 > Curated against real merchants and real schemas. Entries are rejected for fictitious well-known URIs, stale specs, unreachable endpoints, or unverifiable adoption claims.
 
 ![Protocols covered](https://img.shields.io/badge/protocols-ACP%20%C2%B7%20UCP%20%C2%B7%20AP2%20%C2%B7%20TACP-blueviolet)
-![Rails covered](https://img.shields.io/badge/rails-MPP%20%C2%B7%20x402%20%C2%B7%20cards%20%C2%B7%20stablecoin-blue)
+![Rails covered](https://img.shields.io/badge/rails-MPP%20%C2%B7%20x402%20%C2%B7%20cards%20%C2%B7%20stablecoin%20%C2%B7%20Nano-blue)
 [![GitHub stars](https://img.shields.io/github/stars/xpaysh/awesome-agentic-commerce?style=flat)](https://github.com/xpaysh/awesome-agentic-commerce)
 [![Last update](https://img.shields.io/github/last-commit/xpaysh/awesome-agentic-commerce?label=updated)](./UPDATES.md)
 [![License: CC0-1.0](https://img.shields.io/badge/license-CC0--1.0-lightgrey.svg)](LICENSE)
@@ -181,6 +181,7 @@ These sit *below* the commerce protocols. Any commerce protocol can plug into an
 | **x402** | HTTP 402 native | stablecoin onchain, ~seconds | agent micropayments, low-friction stablecoin | [x402.org](https://x402.org) |
 | **Cards (direct)** | PSP APIs | T+1+ | high-value consumer checkout, existing PSP relationship | Stripe / Adyen / Braintree / Checkout.com |
 | **Stablecoin direct** | Onchain primitives | onchain | programmatic settlement without a payments protocol | Bridge / Tempo / Privy |
+| **Nano (XNO)** | Native ledger DAG | ~sub-second, zero fee | true micropayments; self-custody, no bridge, fee floor of zero | [x402nano/exact](https://github.com/x402nano/exact), [nano.org](https://nano.org) |
 
 xpay✦ operates an x402 facilitator listed on [x402.org](https://x402.org): [facilitator.xpay.sh](https://www.xpay.sh/x402-facilitators/xpay/).
 
