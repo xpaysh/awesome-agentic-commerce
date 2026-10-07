@@ -228,6 +228,7 @@ The negative space. Every entry below has been seen in plugin output or blog pos
 - [`@xpaysh/conformance-fixtures`](https://www.npmjs.com/package/@xpaysh/conformance-fixtures) — golden ACP + UCP request/response payloads cross-validating against canonical schemas via Ajv.
 - [`@xpaysh/storefront-audit`](https://www.npmjs.com/package/@xpaysh/storefront-audit) — `ac-doctor` CLI; audits a live storefront for the discovery surface above.
 - [`@xpaysh/lint-wellknowns`](https://www.npmjs.com/package/@xpaysh/lint-wellknowns) — CI linter; fails builds emitting the "files to not emit" list above.
+- [Live Web Search API](https://x402-api-jq9v.onrender.com) - Real-time web data extraction and context search for autonomous AI agents. Paid per call via Base Mainnet USDC ($0.005/request).
 
 ---
 
