@@ -228,6 +228,7 @@ The negative space. Every entry below has been seen in plugin output or blog pos
 - [`@xpaysh/conformance-fixtures`](https://www.npmjs.com/package/@xpaysh/conformance-fixtures) — golden ACP + UCP request/response payloads cross-validating against canonical schemas via Ajv.
 - [`@xpaysh/storefront-audit`](https://www.npmjs.com/package/@xpaysh/storefront-audit) — `ac-doctor` CLI; audits a live storefront for the discovery surface above.
 - [`@xpaysh/lint-wellknowns`](https://www.npmjs.com/package/@xpaysh/lint-wellknowns) — CI linter; fails builds emitting the "files to not emit" list above.
+- [RevRule by Payload](https://payloadhq.github.io/revrule-console/) — programmable revenue rules engine: turns x402/MCP revenue events into auditable economic entitlements (splits, recoupment, waterfalls, attribution). The "what happens after the payment" layer for agent commerce. $99 one-time, non-custodial.
 
 ---
 
