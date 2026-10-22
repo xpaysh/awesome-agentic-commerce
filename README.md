@@ -184,6 +184,8 @@ These sit *below* the commerce protocols. Any commerce protocol can plug into an
 
 xpay✦ operates an x402 facilitator listed on [x402.org](https://x402.org): [facilitator.xpay.sh](https://www.xpay.sh/x402-facilitators/xpay/).
 
+Live merchant example (independent): [base-oracle](https://github.com/viniciusguardaa-cpu/base-oracle) — x402 v2 pay-per-call Base-chain data API (wallet report, gas oracle, token safety, tx explain, x402 self-audit). 0.05 USDC per call on Base mainnet (`eip155:8453`), no facilitator: verifies the `Transfer` receipt on-chain via public RPC. Live endpoint: https://arturo-epiphytical-torrie.ngrok-free.dev (`GET /v1/sample` is free).
+
 ---
 
 ## Discovery standards
