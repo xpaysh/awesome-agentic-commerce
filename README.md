@@ -261,6 +261,8 @@ cd ap2-vending-machine && npm start          # verifiable mandates
 
 Long form: [`use-cases/README.md`](./use-cases/README.md), [`implementations/README.md`](./implementations/README.md).
 
+- [Mekong Trade Intelligence](https://api.mekongtradeintel.com/.well-known/x402.json) — 60 production x402 APIs + 47-tool MCP connector on Base (USDC, x402 v2): market data, DeFi, SEC filings, AI verdicts, contract audits. No accounts or API keys; pay per call.
+
 ---
 
 ## Weekly updates
