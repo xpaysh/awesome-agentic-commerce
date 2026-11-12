@@ -228,6 +228,7 @@ The negative space. Every entry below has been seen in plugin output or blog pos
 - [`@xpaysh/conformance-fixtures`](https://www.npmjs.com/package/@xpaysh/conformance-fixtures) — golden ACP + UCP request/response payloads cross-validating against canonical schemas via Ajv.
 - [`@xpaysh/storefront-audit`](https://www.npmjs.com/package/@xpaysh/storefront-audit) — `ac-doctor` CLI; audits a live storefront for the discovery surface above.
 - [`@xpaysh/lint-wellknowns`](https://www.npmjs.com/package/@xpaysh/lint-wellknowns) — CI linter; fails builds emitting the "files to not emit" list above.
+- [Bot Agora x402 desk](https://agora-x402-desk.sirgrokkius.workers.dev) — 14 free agent dev tools (cron, semver, DST, retry, CSP, 402 decode) plus 10-sat sBTC AI reviews on Stacks, charged only on success; MIT forkable template and catalog at https://bot-agora.surge.sh/services.json.
 
 ---
 
