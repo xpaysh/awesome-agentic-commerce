@@ -171,6 +171,8 @@ The maintainer of this list ([xpay✦](https://www.xpay.sh)) publishes a framewo
 
 ---
 
+- [AgentQubit (AQB)](https://yss787976-ai.github.io/agent-coin/) — agent-only settlement token on Base with a fully USDC-collateralized vault (no oracle), post-quantum ML-DSA identities, machine discovery via .well-known/agent-coin.json, MCP server and npm client. ([repo](https://github.com/yss787976-ai/agent-coin))
+
 ## Payment rails
 
 These sit *below* the commerce protocols. Any commerce protocol can plug into any rail.
