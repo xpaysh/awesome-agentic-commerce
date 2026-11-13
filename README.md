@@ -153,6 +153,7 @@ Platforms without a current entry (OpenCart, Shopware, Spree, Sylius, nopCommerc
 ---
 
 ## Reference implementations and SDKs
+- [usdc-paywall](https://github.com/essentoclothes-sudo/usdc-paywall) - Zero-dependency USDC paywall for Node.js APIs: HTTP 402 gate with on-chain tx verification (Base), CLI included, no Stripe required. ([npm](https://www.npmjs.com/package/@josealbertomaquina/usdc-paywall))
 
 | Implementation | Type | Protocols | Language | Maintainer |
 |---|---|---|---|---|
