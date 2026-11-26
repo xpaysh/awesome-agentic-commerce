@@ -275,6 +275,7 @@ Long form: [`use-cases/README.md`](./use-cases/README.md), [`implementations/REA
 - [Awesome x402](https://github.com/xpaysh/awesome-x402) — x402-specific (the rail under several entries above).
 - [Awesome AI Agents](https://github.com/e2b-dev/awesome-ai-agents) — general AI agent resources.
 - [Awesome LLM Apps](https://github.com/Shubhamsaboo/awesome-llm-apps) — LLM application catalog.
+- [FMF Tools](https://github.com/GeminiGeorge22/fmf-tools) — Catalog of remote MCP servers and pay-per-call x402 APIs for agents ([live catalog](https://tools.fmf-x402.workers.dev/?ref=gh-awesome-agentic-commerce-xpaysh)).
 
 ---
 
